@@ -6,11 +6,20 @@ import streamlit as st
 car_data = pd.read_csv('vehicles_us.csv')
 
 # crear un encabezado
-st.header('Gráficos de datos de anuncios de automóviles')
+st.header('Gráficos de datos de anuncios de automóviles👽')
 
 # crear una casilla de verificación
-build_histogram = st.checkbox('Construir un histograma')
-build_scatter = st.checkbox('Construir un gráfico de dispersión')
+build_sample_data = st.checkbox('Mostrar una muestra de los datos')
+build_histogram = st.checkbox(
+    'Construir un histograma para la variable odometer (kilometraje)')
+build_scatter = st.checkbox(
+    'Construir un gráfico de dispersión para las columnas price (precio) y odometer')
+
+if build_sample_data:  # si la casilla de verificación está seleccionada
+    # crear una muestra de los datos
+    sample = car_data.sample(10)
+    # mostrar una tabla con la muestra de 10 filas
+    st.write(sample)
 
 if build_histogram:  # si la casilla de verificación está seleccionada
     # crear un histograma
